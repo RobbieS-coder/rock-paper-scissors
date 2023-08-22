@@ -47,10 +47,21 @@ function game() {
 		console.log(playRound(playerSelection, getComputerChoice()));
 	}
 
+	endGame();
+}
+
+function endGame() {
 	if (playerRoundsWon > computerRoundsWon) {
-		console.log(`Well Done! You beat the computer! You won ${playerRoundsWon}, drew ${roundsDrawn} and lost ${computerRoundsWon}!`)
+		console.log(`Well Done! You beat the computer! You won ${playerRoundsWon}, drew ${roundsDrawn} and lost ${computerRoundsWon}!`);
 	} else if (playerRoundsWon < computerRoundsWon) {
-		console.log(`Oh no! The computer beat you! You won ${playerRoundsWon}, drew ${roundsDrawn} and lost ${computerRoundsWon}.`)
+		console.log(`Oh no! The computer beat you! You won ${playerRoundsWon}, drew ${roundsDrawn} and lost ${computerRoundsWon}.`);
+	} else {
+		console.log(`It's a tie! You won ${playerRoundsWon}, drew ${roundsDrawn} and lost ${computerRoundsWon}. Play one last round as a tie-breaker!`);
+		console.log("Tie-breaker!");
+		let playerSelection = prompt("Pick Rock, Paper, or Scissors").toLowerCase();
+
+		console.log(playRound(playerSelection, getComputerChoice()));
+		endGame();
 	}
 }
 
