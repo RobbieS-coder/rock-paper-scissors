@@ -18,6 +18,19 @@ function getComputerChoice() {
 	}
 }
 
+function getPlayerChoice() {
+	let playerSelection = prompt("Pick Rock, Paper, or Scissors").toLowerCase();
+
+	if ((playerSelection != "rock")
+	&& (playerSelection != "paper")
+	&& (playerSelection != "scissors")) {
+		console.log(`${playerSelection} is not a valid choice. Double check you haven't misspelt it.`);
+		return getPlayerChoice();
+	} else {
+		return playerSelection;
+	}
+}
+
 function playRound(playerSelection, computerSelection) {
 	if (playerSelection == computerSelection) {
 		roundsDrawn++;
@@ -42,9 +55,8 @@ function game() {
 		} else {
 			console.log("Final Round!");
 		}
-		let playerSelection = prompt("Pick Rock, Paper, or Scissors").toLowerCase();
 
-		console.log(playRound(playerSelection, getComputerChoice()));
+		console.log(playRound(getPlayerChoice(), getComputerChoice()));
 	}
 
 	endGame();
@@ -58,10 +70,27 @@ function endGame() {
 	} else {
 		console.log(`It's a tie! You won ${playerRoundsWon}, drew ${roundsDrawn} and lost ${computerRoundsWon}. Play one last round as a tie-breaker!`);
 		console.log("Tie-breaker!");
-		let playerSelection = prompt("Pick Rock, Paper, or Scissors").toLowerCase();
 
-		console.log(playRound(playerSelection, getComputerChoice()));
+		console.log(playRound(getPlayerChoice(), getComputerChoice()));
 		endGame();
+	}
+	playAgain();
+}
+
+function playAgain() {
+	let playAgainChoice = prompt("Do you want to play again? (y/n)");
+
+	if (playAgainChoice == "y") {
+		playerRoundsWon = 0;
+		computerRoundsWon = 0;
+		roundsDrawn = 0;
+		game();
+	} else if (playAgainChoice == "n"){
+		console.log("Thank you for playing!");
+		return;
+	} else {
+		console.log(`${playAgainChoice} is invalid choice.`);
+		playAgain();
 	}
 }
 
