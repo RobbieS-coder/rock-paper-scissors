@@ -21,9 +21,9 @@ function getComputerChoice() {
 function getPlayerChoice() {
 	let playerSelection = prompt("Pick Rock, Paper, or Scissors").toLowerCase();
 
-	if ((playerSelection != "rock")
-	&& (playerSelection != "paper")
-	&& (playerSelection != "scissors")) {
+	if ((playerSelection != "rock") &&
+	(playerSelection != "paper") &&
+	(playerSelection != "scissors")) {
 		console.log(`${playerSelection} is not a valid choice. Double check you haven't misspelt it.`);
 		return getPlayerChoice();
 	} else {
@@ -36,9 +36,9 @@ function playRound(playerSelection, computerSelection) {
 		roundsDrawn++;
 		return `You drew! You both chose ${capitalise(playerSelection)}.`;
 	}
-	else if ((playerSelection == "rock" && computerSelection == "paper")
-	|| (playerSelection == "paper" && computerSelection == "scissors")
-	|| (playerSelection == "scissors" && computerSelection == "rock")) {
+	else if ((playerSelection == "rock" && computerSelection == "paper") ||
+	(playerSelection == "paper" && computerSelection == "scissors") ||
+	(playerSelection == "scissors" && computerSelection == "rock")) {
 		computerRoundsWon++;
 		return `You lost! ${capitalise(computerSelection)} beats ${capitalise(playerSelection)}.`;
 	} else {
