@@ -94,4 +94,4 @@ function playAgain() {
 	}
 }
 
-game()
+game();
