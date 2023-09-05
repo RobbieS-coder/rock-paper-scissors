@@ -1,0 +1,27 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(17 24 39);
+}
+
+* {
+  color: white;
+  text-align: center;
+  margin: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button {
+  background: none;
+  border: none;
+}
+
+.score-header,
+.score {
+  margin: 0px;
+}

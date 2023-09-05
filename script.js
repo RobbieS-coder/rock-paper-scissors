@@ -1,10 +1,11 @@
-const roundNumber = document.querySelector("#round-number");
-const buttons = document.querySelector("#buttons");
+const roundNumber = document.querySelector(".round-number");
+const buttons = document.querySelector(".buttons");
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
-const msg = document.querySelector("#msg");
-const score = document.querySelector("#score");
+const msg = document.querySelector(".msg");
+const scoreHeader = document.querySelector(".score-header");
+const score = document.querySelector(".score");
 
 let playerRoundsWon = 0;
 let computerRoundsWon = 0;
@@ -75,8 +76,12 @@ function displayResult() {
 
 function endGame() {
   if (playerRoundsWon > computerRoundsWon) {
+    msg.style.fontSize = "60px";
     msg.textContent = "Well Done! You beat the computer!";
   } else if (playerRoundsWon < computerRoundsWon) {
+    msg.style.fontSize = "60px";
+    score.style.fontSize = "20px";
+    scoreHeader.style.fontSize = "20px";
     msg.textContent = "Oh no! The computer beat you!";
   }
   while (buttons.firstChild) {

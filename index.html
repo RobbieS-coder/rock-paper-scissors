@@ -4,24 +4,24 @@
   <head>
     <meta charset="UTF-8" />
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
     <script defer src="script.js"></script>
   </head>
 
   <body>
-    <div id="round-number"></div>
-    <div id="buttons">
-      <button id="rock">
+    <div class="msg">Welcome to Rock, Paper, Scissors!</div>
+    <div class="buttons">
+      <button class="button" id="rock">
         <img src="img/rock.png" alt="rock" />
       </button>
-      <button id="paper">
+      <button class="button" id="paper">
         <img src="img/paper.png" alt="paper" />
       </button>
-      <button id="scissors">
+      <button class="button" id="scissors">
         <img src="img/scissors.png" alt="scissors" />
       </button>
     </div>
-    <div id="msg">Welcome to Rock, Paper, Scissors!</div>
-    <div id="score-header">W - D - L</div>
-    <div id="score">0 - 0 - 0</div>
+    <span class="score-header">W - D - L</span>
+    <span class="score">0 - 0 - 0</span>
   </body>
 </html>
