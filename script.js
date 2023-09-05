@@ -1,4 +1,5 @@
 const roundNumber = document.querySelector("#round-number");
+const buttons = document.querySelector("#buttons");
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
@@ -17,9 +18,9 @@ function capitalise(str) {
 function getComputerChoice() {
   let randNum = Math.floor(Math.random() * 3);
 
-  if (randNum == 0) {
+  if (randNum === 0) {
     return "rock";
-  } else if (randNum == 1) {
+  } else if (randNum === 1) {
     return "paper";
   } else {
     return "scissors";
@@ -30,32 +31,38 @@ function getPlayerChoice() {
   rock.addEventListener("click", () => {
     roundResult = playRound("rock", getComputerChoice());
     displayResult();
+    updateScore();
   });
   paper.addEventListener("click", () => {
     roundResult = playRound("paper", getComputerChoice());
     displayResult();
+    updateScore();
   });
   scissors.addEventListener("click", () => {
     roundResult = playRound("scissors", getComputerChoice());
     displayResult();
+    updateScore();
   });
 }
 
 function playRound(playerSelection, computerSelection) {
-  if (playerSelection == computerSelection) {
+  if (playerSelection === computerSelection) {
     roundsDrawn++;
+    updateScore();
     return `You drew! You both chose ${capitalise(playerSelection)}.`;
   } else if (
-    (playerSelection == "rock" && computerSelection == "paper") ||
-    (playerSelection == "paper" && computerSelection == "scissors") ||
-    (playerSelection == "scissors" && computerSelection == "rock")
+    (playerSelection === "rock" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "rock")
   ) {
     computerRoundsWon++;
+    updateScore();
     return `You lost! ${capitalise(computerSelection)} beats ${capitalise(
       playerSelection
     )}.`;
   } else {
     playerRoundsWon++;
+    updateScore();
     return `You won! ${capitalise(playerSelection)} beats ${capitalise(
       computerSelection
     )}.`;
@@ -72,23 +79,26 @@ function endGame() {
   } else if (playerRoundsWon < computerRoundsWon) {
     msg.textContent = "Oh no! The computer beat you!";
   }
-  playAgain();
-}
-
-function playAgain() {
-  let playAgainChoice = prompt("Do you want to play again? (y/n)");
-
-  if (playAgainChoice == "y") {
-    playerRoundsWon = 0;
-    computerRoundsWon = 0;
-    roundsDrawn = 0;
-    // Reset
-  } else if (playAgainChoice == "n") {
-    msg.textContent = "Thank you for playing!";
-    return;
+  while (buttons.firstChild) {
+    buttons.removeChild(buttons.firstChild);
   }
 }
 
-msg.textContent =
-  "Welcome to Rock, Paper, Scissors! You will be playing the first to five rounds against a computer. Let's see who wins!";
-getPlayerChoice();
+function updateScore() {
+  score.textContent = `${playerRoundsWon} - ${roundsDrawn} - ${computerRoundsWon}`;
+
+  if (playerRoundsWon === 5 || computerRoundsWon === 5) {
+    endGame();
+  }
+}
+
+function startGame() {
+  if (playerRoundsWon === 0 && roundsDrawn === 0 && computerRoundsWon === 0) {
+    updateScore();
+    msg.textContent =
+      "Welcome to Rock, Paper, Scissors! You will be playing the first to five rounds against a computer. Let's see who wins!";
+    getPlayerChoice();
+  }
+}
+
+startGame();
